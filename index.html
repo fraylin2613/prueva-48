@@ -1,105 +1,424 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Inicio de Sesión</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clínica Luz - Sistema de Citas</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial, sans-serif;
+}
 
-        .contenedor {
-            background-color: white;
-            width: 350px;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-            text-align: center;
-        }
+body{
+    min-height:100vh;
+    background:radial-gradient(circle at top,#27374d,#0b1320 70%);
+    color:white;
+}
 
-        .contenedor h1 {
-            margin-bottom: 20px;
-            color: #1e3c72;
-        }
+.pantalla{
+    display:none;
+    min-height:100vh;
+    padding:30px;
+}
 
-        .grupo {
-            text-align: left;
-            margin-bottom: 15px;
-        }
+.activa{
+    display:block;
+}
 
-        .grupo label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
+.login-box{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+}
 
-        .grupo input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #aaa;
-            border-radius: 8px;
-            box-sizing: border-box;
-        }
+.lampara{
+    position:absolute;
+    top:0;
+    text-align:center;
+}
 
-        .boton {
-            width: 100%;
-            padding: 12px;
-            background-color: #1e3c72;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-        }
+.cable{
+    width:3px;
+    height:120px;
+    background:#aaa;
+    margin:auto;
+}
 
-        .boton:hover {
-            background-color: #16325c;
-        }
+.foco{
+    width:70px;
+    height:35px;
+    background:#f6d365;
+    border-radius:0 0 50px 50px;
+    box-shadow:0 0 80px 40px rgba(246,211,101,.45);
+}
 
-        .enlace {
-            margin-top: 15px;
-            font-size: 14px;
-        }
+.card{
+    margin-top:80px;
+    width:380px;
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.25);
+    padding:30px;
+    border-radius:25px;
+    box-shadow:0 0 40px rgba(0,0,0,.5);
+}
 
-        .enlace a {
-            color: #1e3c72;
-            text-decoration: none;
-            font-weight: bold;
-        }
-    </style>
+h1,h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+input,select,textarea,button{
+    width:100%;
+    padding:13px;
+    margin:8px 0;
+    border-radius:12px;
+    border:none;
+    outline:none;
+}
+
+textarea{
+    height:90px;
+    resize:none;
+}
+
+button{
+    background:#38bdf8;
+    color:#07111f;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#7dd3fc;
+}
+
+.link{
+    color:#7dd3fc;
+    cursor:pointer;
+    text-align:center;
+    margin-top:12px;
+}
+
+.panel{
+    max-width:1000px;
+    margin:auto;
+}
+
+.nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.tarjeta{
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:18px;
+    padding:20px;
+}
+
+.cita{
+    background:white;
+    color:#111;
+    padding:15px;
+    border-radius:14px;
+    margin:10px 0;
+}
+
+small{
+    color:#ddd;
+}
+</style>
 </head>
 
 <body>
 
-    <div class="contenedor">
-        <h1>Iniciar Sesión</h1>
+<section id="login" class="pantalla activa">
+    <div class="login-box">
+        <div class="lampara">
+            <div class="cable"></div>
+            <div class="foco"></div>
+        </div>
 
-        <form action="#" method="post">
-            <div class="grupo">
-                <label for="usuario">Usuario</label>
-                <input type="text" id="usuario" name="usuario" placeholder="Ingrese su usuario" required>
-            </div>
+        <div class="card">
+            <h1>Clínica Luz</h1>
+            <h2>Inicio de Sesión</h2>
 
-            <div class="grupo">
-                <label for="clave">Contraseña</label>
-                <input type="password" id="clave" name="clave" placeholder="Ingrese su contraseña" required>
-            </div>
+            <input type="email" id="loginCorreo" placeholder="Correo">
+            <input type="password" id="loginClave" placeholder="Contraseña">
 
-            <button class="boton" type="submit">Entrar</button>
-        </form>
+            <button onclick="iniciarSesion()">Entrar</button>
 
-        <div class="enlace">
-            ¿No tienes cuenta? <a href="#">Regístrate</a>
+            <p class="link" onclick="mostrar('registro')">Crear cuenta de paciente</p>
+
+            <br>
+            <small>
+                Médico: doctor@clinica.com<br>
+                Clave: Doctor123
+            </small>
         </div>
     </div>
+</section>
+
+<section id="registro" class="pantalla">
+    <div class="login-box">
+        <div class="card">
+            <h1>Registro de Paciente</h1>
+
+            <input type="text" id="regNombre" placeholder="Nombre completo">
+            <input type="text" id="regCedula" placeholder="Cédula">
+            <input type="number" id="regEdad" placeholder="Edad">
+            <input type="tel" id="regTelefono" placeholder="Teléfono">
+            <input type="email" id="regCorreo" placeholder="Correo">
+            <input type="password" id="regClave" placeholder="Contraseña">
+
+            <button onclick="registrarPaciente()">Registrarme</button>
+            <p class="link" onclick="mostrar('login')">Ya tengo cuenta</p>
+        </div>
+    </div>
+</section>
+
+<section id="paciente" class="pantalla">
+    <div class="panel">
+        <div class="nav">
+            <h1>Panel del Paciente</h1>
+            <button onclick="cerrarSesion()">Salir</button>
+        </div>
+
+        <div class="grid">
+            <div class="tarjeta">
+                <h2>Reservar Cita</h2>
+
+                <select id="doctorCita">
+                    <option>Dr. Juan Pérez - Medicina General</option>
+                    <option>Dra. María Gómez - Pediatría</option>
+                    <option>Dr. Carlos Díaz - Cardiología</option>
+                    <option>Dra. Ana Ruiz - Dermatología</option>
+                </select>
+
+                <input type="date" id="fechaCita">
+                <input type="time" id="horaCita">
+                <textarea id="motivoCita" placeholder="Motivo de la consulta"></textarea>
+
+                <button onclick="reservarCita()">Reservar cita</button>
+            </div>
+
+            <div class="tarjeta">
+                <h2>Mis Citas</h2>
+                <div id="misCitas"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="doctor" class="pantalla">
+    <div class="panel">
+        <div class="nav">
+            <h1>Panel del Médico</h1>
+            <button onclick="cerrarSesion()">Salir</button>
+        </div>
+
+        <div class="tarjeta">
+            <h2>Citas Reservadas</h2>
+            <div id="todasCitas"></div>
+        </div>
+    </div>
+</section>
+
+<script>
+let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+let citas = JSON.parse(localStorage.getItem("citas")) || [];
+
+const medico = {
+    nombre: "Doctor Principal",
+    correo: "doctor@clinica.com",
+    clave: "Doctor123",
+    rol: "doctor"
+};
+
+function guardar(){
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+    localStorage.setItem("citas", JSON.stringify(citas));
+}
+
+function mostrar(id){
+    document.querySelectorAll(".pantalla").forEach(p => p.classList.remove("activa"));
+    document.getElementById(id).classList.add("activa");
+}
+
+function registrarPaciente(){
+    let nombre = document.getElementById("regNombre").value;
+    let cedula = document.getElementById("regCedula").value;
+    let edad = document.getElementById("regEdad").value;
+    let telefono = document.getElementById("regTelefono").value;
+    let correo = document.getElementById("regCorreo").value;
+    let clave = document.getElementById("regClave").value;
+
+    if(!nombre || !cedula || !edad || !telefono || !correo || !clave){
+        alert("Completa todos los datos");
+        return;
+    }
+
+    if(usuarios.find(u => u.correo === correo)){
+        alert("Ese correo ya está registrado");
+        return;
+    }
+
+    usuarios.push({
+        nombre,
+        cedula,
+        edad,
+        telefono,
+        correo,
+        clave,
+        rol:"paciente"
+    });
+
+    guardar();
+    alert("Paciente registrado correctamente");
+    mostrar("login");
+}
+
+function iniciarSesion(){
+    let correo = document.getElementById("loginCorreo").value;
+    let clave = document.getElementById("loginClave").value;
+
+    if(correo === medico.correo && clave === medico.clave){
+        localStorage.setItem("sesion", JSON.stringify(medico));
+        cargarDoctor();
+        mostrar("doctor");
+        return;
+    }
+
+    let usuario = usuarios.find(u => u.correo === correo && u.clave === clave);
+
+    if(!usuario){
+        alert("Correo o contraseña incorrectos");
+        return;
+    }
+
+    localStorage.setItem("sesion", JSON.stringify(usuario));
+    cargarPaciente();
+    mostrar("paciente");
+}
+
+function reservarCita(){
+    let usuario = JSON.parse(localStorage.getItem("sesion"));
+
+    let doctor = document.getElementById("doctorCita").value;
+    let fecha = document.getElementById("fechaCita").value;
+    let hora = document.getElementById("horaCita").value;
+    let motivo = document.getElementById("motivoCita").value;
+
+    if(!fecha || !hora || !motivo){
+        alert("Completa todos los datos de la cita");
+        return;
+    }
+
+    citas.push({
+        paciente: usuario.nombre,
+        cedula: usuario.cedula,
+        edad: usuario.edad,
+        telefono: usuario.telefono,
+        correo: usuario.correo,
+        doctor,
+        fecha,
+        hora,
+        motivo,
+        estado:"Reservada"
+    });
+
+    guardar();
+    alert("Cita reservada correctamente");
+    cargarPaciente();
+}
+
+function cargarPaciente(){
+    let usuario = JSON.parse(localStorage.getItem("sesion"));
+    let contenedor = document.getElementById("misCitas");
+
+    let mis = citas.filter(c => c.correo === usuario.correo);
+
+    if(mis.length === 0){
+        contenedor.innerHTML = "<p>No tienes citas reservadas.</p>";
+        return;
+    }
+
+    contenedor.innerHTML = "";
+
+    mis.forEach(c => {
+        contenedor.innerHTML += `
+        <div class="cita">
+            <b>${c.doctor}</b><br>
+            Fecha: ${c.fecha}<br>
+            Hora: ${c.hora}<br>
+            Motivo: ${c.motivo}<br>
+            Estado: ${c.estado}
+        </div>`;
+    });
+}
+
+function cargarDoctor(){
+    let contenedor = document.getElementById("todasCitas");
+
+    if(citas.length === 0){
+        contenedor.innerHTML = "<p>No hay citas reservadas.</p>";
+        return;
+    }
+
+    contenedor.innerHTML = "";
+
+    citas.forEach(c => {
+        contenedor.innerHTML += `
+        <div class="cita">
+            <b>Paciente:</b> ${c.paciente}<br>
+            <b>Cédula:</b> ${c.cedula}<br>
+            <b>Edad:</b> ${c.edad}<br>
+            <b>Teléfono:</b> ${c.telefono}<br>
+            <b>Correo:</b> ${c.correo}<br>
+            <b>Doctor:</b> ${c.doctor}<br>
+            <b>Fecha:</b> ${c.fecha}<br>
+            <b>Hora:</b> ${c.hora}<br>
+            <b>Motivo:</b> ${c.motivo}<br>
+            <b>Estado:</b> ${c.estado}
+        </div>`;
+    });
+}
+
+function cerrarSesion(){
+    localStorage.removeItem("sesion");
+    mostrar("login");
+}
+
+window.onload = function(){
+    let sesion = JSON.parse(localStorage.getItem("sesion"));
+
+    if(sesion){
+        if(sesion.rol === "doctor"){
+            cargarDoctor();
+            mostrar("doctor");
+        }else{
+            cargarPaciente();
+            mostrar("paciente");
+        }
+    }
+}
+</script>
 
 </body>
 </html>
