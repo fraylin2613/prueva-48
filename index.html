@@ -3,35 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Clínica El Nuevo Amanecer</title>
+<title>Clínica El Nuevo Amanecer - Plataforma Integral</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
-body{min-height:100vh;background:radial-gradient(circle at top,#27374d,#0b1320 70%);color:white}
+body{min-height:100vh;background:radial-gradient(circle at top,#27374d,#0b1320 70%);color:white;padding-bottom:80px}
 .pantalla{display:none;min-height:100vh;padding:30px}
 .activa{display:block}
 .login-box{min-height:100vh;display:flex;justify-content:center;align-items:center;position:relative;overflow:hidden}
 .lampara{position:absolute;top:0;text-align:center}
 .cable{width:3px;height:120px;background:#ddd;margin:auto}
 .foco{width:70px;height:35px;background:#f6d365;border-radius:0 0 50px 50px;box-shadow:0 0 90px 45px rgba(246,211,101,.45)}
-.card{margin-top:80px;width:390px;background:rgba(255,255,255,.12);backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,.25);padding:30px;border-radius:25px;box-shadow:0 0 40px rgba(0,0,0,.5)}
-h1,h2{text-align:center;margin-bottom:20px}
-input,select,textarea,button{width:100%;padding:13px;margin:8px 0;border-radius:12px;border:none;outline:none}
-textarea{height:90px;resize:none}
-button{background:#38bdf8;color:#07111f;font-weight:bold;cursor:pointer}
+.card{margin-top:40px;width:420px;background:rgba(255,255,255,.12);backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,.25);padding:30px;border-radius:25px;box-shadow:0 0 40px rgba(0,0,0,.5)}
+h1,h2,h3{text-align:center;margin-bottom:15px}
+input,select,textarea,button{width:100%;padding:12px;margin:8px 0;border-radius:12px;border:none;outline:none}
+textarea{height:80px;resize:none}
+button{background:#38bdf8;color:#07111f;font-weight:bold;cursor:pointer;transition:0.3s}
 button:hover{background:#7dd3fc}
+.btn-danger{background:#ef4444;color:white}
+.btn-danger:hover{background:#f87171}
+.btn-success{background:#10b981;color:white}
+.btn-success:hover{background:#34d399}
+.btn-warning{background:#f59e0b;color:white}
+.btn-warning:hover{background:#fbbf24}
 .link{color:#7dd3fc;cursor:pointer;text-align:center;margin-top:12px}
-.panel{max-width:1000px;margin:auto}
-.nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
-.tarjeta{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:18px;padding:20px}
-.cita{background:white;color:#111;padding:15px;border-radius:14px;margin:10px 0}
+.panel{max-width:1200px;margin:auto}
+.nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;background:rgba(255,255,255,.08);padding:15px;border-radius:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.tarjeta{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:18px;padding:20px;margin-bottom:15px}
+.cita, .item-list{background:white;color:#111;padding:15px;border-radius:14px;margin:10px 0}
 small{color:#ddd}
+.badge{display:inline-block;padding:4px 8px;border-radius:8px;font-size:0.8em;font-weight:bold}
+.badge-activa, .badge-aceptada{background:#10b981;color:white}
+.badge-expirada, .badge-rechazada{background:#ef4444;color:white}
+.badge-entregada{background:#6b7280;color:white}
+.badge-pendiente{background:#f59e0b;color:white}
+.tabla-financiera, .tabla-usuarios{width:100%;border-collapse:collapse;margin:10px 0;color:white}
+.tabla-financiera th, .tabla-financiera td, .tabla-usuarios th, .tabla-usuarios td{border:1px solid rgba(255,255,255,.2);padding:10px;text-align:left}
+.tabla-financiera th, .tabla-usuarios th{background:rgba(56,189,248,.2)}
+.tabla-usuarios td{color:white}
+
+/* Botón flotante WhatsApp */
+.btn-whatsapp{position:fixed;bottom:20px;right:20px;background:#25d366;color:white;padding:14px 22px;border-radius:50px;text-decoration:none;font-weight:bold;box-shadow:0 4px 15px rgba(0,0,0,.4);display:flex;align-items:center;gap:10px;z-index:9999;transition:0.3s}
+.btn-whatsapp:hover{background:#1eb857;transform:scale(1.05)}
 </style>
 </head>
 
 <body>
 
+<!-- BOTÓN SOPORTE TÉCNICO WHATSAPP FLOTANTE -->
+<a href="https://wa.link/5s60nn" target="_blank" class="btn-whatsapp">
+  💬 Soporte Técnico 24/7
+</a>
+
+<!-- 1. LOGIN -->
 <section id="login" class="pantalla activa">
   <div class="login-box">
     <div class="lampara">
@@ -41,20 +66,24 @@ small{color:#ddd}
 
     <div class="card">
       <h1>Clínica El Nuevo Amanecer</h1>
-      <h2>Inicio de Sesión</h2>
+      <h2>Plataforma Médica</h2>
 
-      <input type="email" id="loginCorreo" placeholder="Correo">
+      <input type="email" id="loginCorreo" placeholder="Correo electrónico">
       <input type="password" id="loginClave" placeholder="Contraseña">
 
-      <button onclick="iniciarSesion()">Entrar</button>
+      <button onclick="iniciarSesion()">Iniciar Sesión</button>
       <p class="link" onclick="mostrar('registro')">Crear cuenta de paciente</p>
 
       <br>
-      <small>Inicie sesión con las credenciales asignadas.</small>
+      <small>Demo Credenciales:<br>
+      • Admin: admin@clinica.com / Admin1234<br>
+      • Farmacia: farmacia@clinica.com / Farmacia1234<br>
+      • Doctores: juan.perez@clinica.com / Juan1234</small>
     </div>
   </div>
 </section>
 
+<!-- 2. REGISTRO PACIENTE -->
 <section id="registro" class="pantalla">
   <div class="login-box">
     <div class="card">
@@ -68,73 +97,208 @@ small{color:#ddd}
       <input type="password" id="regClave" placeholder="Contraseña">
 
       <button onclick="registrarPaciente()">Registrarme</button>
-      <p class="link" onclick="mostrar('login')">Ya tengo cuenta</p>
+      <p class="link" onclick="mostrar('login')">Ya tengo cuenta (Iniciar sesión)</p>
     </div>
   </div>
 </section>
 
+<!-- 3. PANEL DEL PACIENTE -->
 <section id="paciente" class="pantalla">
   <div class="panel">
     <div class="nav">
       <h1>Panel del Paciente</h1>
-      <button onclick="cerrarSesion()">Salir</button>
+      <div>
+        <span id="nombreUsuarioHeader"></span>
+        <button onclick="cerrarSesion()" class="btn-danger" style="width:auto; display:inline-block; margin-left:10px">Salir</button>
+      </div>
     </div>
 
     <div class="grid">
+      <!-- Agendamiento -->
       <div class="tarjeta">
-        <h2>Reservar Cita</h2>
-
+        <h2>Reservar Cita Médica</h2>
         <select id="doctorCita"></select>
-
         <input type="date" id="fechaCita">
         <input type="time" id="horaCita">
         <textarea id="motivoCita" placeholder="Motivo de la consulta"></textarea>
-
         <button onclick="reservarCita()">Reservar cita</button>
       </div>
 
+      <!-- Mis Citas -->
       <div class="tarjeta">
         <h2>Mis Citas</h2>
         <div id="misCitas"></div>
+      </div>
+
+      <!-- Mis Recetas Digitales -->
+      <div class="tarjeta">
+        <h2>Mis Recetas con Código Único</h2>
+        <div id="misRecetas"></div>
+      </div>
+
+      <!-- Expediente y Exámenes -->
+      <div class="tarjeta">
+        <h2>Mi Expediente y Exámenes</h2>
+        <div id="miExpediente"></div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- 4. PANEL DEL MÉDICO Y ADMINISTRACIÓN -->
 <section id="doctor" class="pantalla">
   <div class="panel">
     <div class="nav">
-      <h1 id="tituloDoctor">Panel del Médico</h1>
-      <button onclick="cerrarSesion()">Salir</button>
+      <h1 id="tituloDoctor">Panel Médico</h1>
+      <button onclick="cerrarSesion()" class="btn-danger" style="width:auto">Salir</button>
     </div>
 
-    <div class="tarjeta">
-      <h2>Citas Reservadas</h2>
-      <div id="todasCitas"></div>
+    <div class="grid">
+      <!-- Citas Asignadas / Pedidos de Citas -->
+      <div class="tarjeta">
+        <h2>Citas y Solicitudes</h2>
+        <div id="todasCitas"></div>
+      </div>
+
+      <!-- Módulo para Emitir Receta Digital -->
+      <div class="tarjeta">
+        <h2>Emitir Receta Médica Digital</h2>
+        <select id="pacienteReceta"></select>
+        <input type="text" id="medRecetado" placeholder="Medicamentos (Ej: Paracetamol 500mg)">
+        <textarea id="indicacionesReceta" placeholder="Indicaciones médicas"></textarea>
+        <label><small>Días de Validez (Fecha de expiración):</small></label>
+        <input type="number" id="diasValidez" value="7" placeholder="Días de validez">
+        <button onclick="emitirReceta()" class="btn-success">Generar Receta con Código Único</button>
+      </div>
+
+      <!-- Expediente Clínico de Pacientes -->
+      <div class="tarjeta">
+        <h2>Actualizar Expediente Clínico</h2>
+        <select id="pacienteExpediente"></select>
+        <input type="text" id="expDiagnostico" placeholder="Diagnóstico">
+        <textarea id="expTratamiento" placeholder="Tratamiento y observaciones"></textarea>
+        <input type="text" id="expAlergias" placeholder="Alergias conocidas">
+        <button onclick="guardarExpediente()">Guardar en Expediente</button>
+      </div>
+
+      <!-- Módulo Exclusivo de Administración y Control Total (Visible solo para Admin) -->
+      <div class="tarjeta" id="seccionAdmin" style="display:none; grid-column: 1 / -1;">
+        <h2>Panel de Control Total del Administrador</h2>
+        
+        <!-- Gestión de Médicos -->
+        <div class="tarjeta" style="background:rgba(0,0,0,.2); margin-top:15px">
+          <h3>Gestión de Médicos (Agregar / Eliminar)</h3>
+          <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+            <input type="text" id="docNombre" placeholder="Nombre completo (Dr./Dra.)">
+            <input type="text" id="docEspecialidad" placeholder="Especialidad">
+            <input type="email" id="docCorreo" placeholder="Correo electrónico">
+            <input type="password" id="docClave" placeholder="Contraseña">
+          </div>
+          <button onclick="agregarDoctor()" class="btn-success" style="margin-top:10px">Agregar Nuevo Doctor</button>
+          
+          <h4 style="margin-top:20px; text-align:left">Doctores Registrados:</h4>
+          <div id="listaDoctoresAdmin"></div>
+        </div>
+
+        <!-- Gestión de Todos los Usuarios del Sistema -->
+        <div class="tarjeta" style="background:rgba(0,0,0,.2); margin-top:15px">
+          <h3>Acceso y Control de Todos los Usuarios</h3>
+          <div id="tablaUsuariosAdmin" style="overflow-x:auto;"></div>
+        </div>
+
+        <!-- Métricas Financieras -->
+        <div class="tarjeta" style="background:rgba(0,0,0,.2); margin-top:15px">
+          <h3>Métricas Financieras del Proyecto</h3>
+          <table class="tabla-financiera">
+            <thead>
+              <tr>
+                <th>Concepto de Gasto Operativo</th>
+                <th>Monto Mensual</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Alquiler de oficina (9 m²)</td><td>B/. 480.00</td></tr>
+              <tr><td>Infraestructura tecnológica (Servidores/Nube/Respaldo)</td><td>B/. 120.00</td></tr>
+              <tr><td>Internet empresarial con IP fija</td><td>B/. 60.00</td></tr>
+              <tr><td>Mantenimiento preventivo</td><td>B/. 40.00</td></tr>
+              <tr><td>Préstamo Bancario (B/. 13,500 a 4 años)</td><td>B/. 368.52</td></tr>
+              <tr><td><strong>Total Gasto Fijo Mensual</strong></td><td><strong>B/. 1,068.52</strong></td></tr>
+            </tbody>
+          </table>
+
+          <h3>Planes de Servicio Configurados</h3>
+          <div class="grid">
+            <div class="item-list">
+              <b>Plan Inicial</b><br>B/. 150.00 / mes<br>Ideal para consultorios pequeños.
+            </div>
+            <div class="item-list">
+              <b>Plan Profesional</b><br>B/. 200.00 / mes<br>Ideal para clínicas medianas.
+            </div>
+            <div class="item-list">
+              <b>Plan Empresarial</b><br>B/. 300.00 / mes<br>Incluye Farmacia, Exámenes y Soporte 24/7.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. PANEL DE FARMACIA -->
+<section id="farmacia" class="pantalla">
+  <div class="panel">
+    <div class="nav">
+      <h1>Módulo Inteligente de Farmacia</h1>
+      <button onclick="cerrarSesion()" class="btn-danger" style="width:auto">Salir</button>
+    </div>
+
+    <div class="grid">
+      <!-- Búsqueda y Validación de Receta por Código / Cédula -->
+      <div class="tarjeta">
+        <h2>Validación y Control de Recetas</h2>
+        <input type="text" id="busquedaReceta" placeholder="Ingrese Cédula del Paciente o Código de Rastreo">
+        <button onclick="buscarRecetaFarmacia()">Validar Receta Digital</button>
+        
+        <div id="resultadoFarmacia" style="margin-top:15px"></div>
+      </div>
+
+      <!-- Consulta de Inventario / Medicamentos -->
+      <div class="tarjeta">
+        <h2>Precios e Inventario de Medicamentos</h2>
+        <div class="item-list"><b>Amoxicilina 500mg:</b> B/. 12.50 - Disponible: 45 Unid.</div>
+        <div class="item-list"><b>Paracetamol 500mg:</b> B/. 3.00 - Disponible: 120 Unid.</div>
+        <div class="item-list"><b>Ibuprofeno 400mg:</b> B/. 5.50 - Disponible: 80 Unid.</div>
+        <div class="item-list"><b>Loratadina 10mg:</b> B/. 8.00 - Disponible: 30 Unid.</div>
+      </div>
     </div>
   </div>
 </section>
 
 <script>
+// BASE DE DATOS LOCAL
 let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 let citas = JSON.parse(localStorage.getItem("citas")) || [];
+let recetas = JSON.parse(localStorage.getItem("recetas")) || [];
+let expedientes = JSON.parse(localStorage.getItem("expedientes")) || {};
 
-const medicos = [
+// Lista por defecto de personal de salud / staff
+let medicosDefault = [
   {nombre:"Dr. Juan Pérez", especialidad:"Medicina General", correo:"juan.perez@clinica.com", clave:"Juan1234", rol:"doctor"},
   {nombre:"Dra. María Gómez", especialidad:"Pediatría", correo:"maria.gomez@clinica.com", clave:"Maria1234", rol:"doctor"},
   {nombre:"Dr. Carlos Díaz", especialidad:"Cardiología", correo:"carlos.diaz@clinica.com", clave:"Carlos1234", rol:"doctor"},
   {nombre:"Dra. Ana Ruiz", especialidad:"Dermatología", correo:"ana.ruiz@clinica.com", clave:"Ana1234", rol:"doctor"},
-  {nombre:"Dr. Luis Herrera", especialidad:"Traumatología", correo:"luis.herrera@clinica.com", clave:"Luis1234", rol:"doctor"},
-  {nombre:"Dra. Sofía Morales", especialidad:"Ginecología", correo:"sofia.morales@clinica.com", clave:"Sofia1234", rol:"doctor"},
-  {nombre:"Dr. Andrés Castillo", especialidad:"Neurología", correo:"andres.castillo@clinica.com", clave:"Andres1234", rol:"doctor"},
-  {nombre:"Dra. Valeria Torres", especialidad:"Oftalmología", correo:"valeria.torres@clinica.com", clave:"Valeria1234", rol:"doctor"},
-  {nombre:"Dr. Ricardo Mendoza", especialidad:"Odontología", correo:"ricardo.mendoza@clinica.com", clave:"Ricardo1234", rol:"doctor"},
+  {nombre:"Farmacia Central", especialidad:"Farmacia", correo:"farmacia@clinica.com", clave:"Farmacia1234", rol:"farmacia"},
   {nombre:"Administrador", especialidad:"Administración", correo:"admin@clinica.com", clave:"Admin1234", rol:"admin"}
 ];
+
+let medicos = JSON.parse(localStorage.getItem("medicos")) || medicosDefault;
 
 function guardar(){
   localStorage.setItem("usuarios", JSON.stringify(usuarios));
   localStorage.setItem("citas", JSON.stringify(citas));
+  localStorage.setItem("recetas", JSON.stringify(recetas));
+  localStorage.setItem("expedientes", JSON.stringify(expedientes));
+  localStorage.setItem("medicos", JSON.stringify(medicos));
 }
 
 function mostrar(id){
@@ -144,10 +308,22 @@ function mostrar(id){
 
 function cargarListaDoctores(){
   const select = document.getElementById("doctorCita");
+  if(!select) return;
   select.innerHTML = '<option value="">Seleccione un doctor</option>';
 
   medicos.filter(m => m.rol === "doctor").forEach(m => {
     select.innerHTML += `<option value="${m.correo}">${m.nombre} - ${m.especialidad}</option>`;
+  });
+}
+
+function cargarListaPacientes(){
+  const selects = [document.getElementById("pacienteReceta"), document.getElementById("pacienteExpediente")];
+  selects.forEach(select => {
+    if(!select) return;
+    select.innerHTML = '<option value="">Seleccione un paciente</option>';
+    usuarios.filter(u => u.rol === "paciente").forEach(u => {
+      select.innerHTML += `<option value="${u.cedula}">${u.nombre} (${u.cedula})</option>`;
+    });
   });
 }
 
@@ -160,19 +336,19 @@ function registrarPaciente(){
   let clave = document.getElementById("regClave").value;
 
   if(!nombre || !cedula || !edad || !telefono || !correo || !clave){
-    alert("Completa todos los datos");
+    alert("Completa todos los datos obligatorios");
     return;
   }
 
-  if(usuarios.find(u => u.correo === correo) || medicos.find(m => m.correo === correo)){
-    alert("Ese correo ya está registrado");
+  if(usuarios.find(u => u.correo === correo || u.cedula === cedula) || medicos.find(m => m.correo === correo)){
+    alert("El correo o cédula ya se encuentra registrado.");
     return;
   }
 
   usuarios.push({nombre, cedula, edad, telefono, correo, clave, rol:"paciente"});
   guardar();
 
-  alert("Paciente registrado correctamente");
+  alert("Paciente registrado exitosamente.");
   mostrar("login");
 }
 
@@ -180,15 +356,21 @@ function iniciarSesion(){
   let correo = document.getElementById("loginCorreo").value;
   let clave = document.getElementById("loginClave").value;
 
+  // Verificar Personal / Staff / Admin
   let medicoEncontrado = medicos.find(m => m.correo === correo && m.clave === clave);
 
   if(medicoEncontrado){
     localStorage.setItem("sesion", JSON.stringify(medicoEncontrado));
-    cargarDoctor();
-    mostrar("doctor");
+    if(medicoEncontrado.rol === "farmacia"){
+      mostrar("farmacia");
+    } else {
+      cargarDoctor();
+      mostrar("doctor");
+    }
     return;
   }
 
+  // Verificar Pacientes
   let usuario = usuarios.find(u => u.correo === correo && u.clave === clave);
 
   if(!usuario){
@@ -217,6 +399,7 @@ function reservarCita(){
   }
 
   citas.push({
+    id: Date.now(),
     paciente: usuario.nombre,
     cedula: usuario.cedula,
     edad: usuario.edad,
@@ -228,11 +411,11 @@ function reservarCita(){
     fecha,
     hora,
     motivo,
-    estado:"Reservada"
+    estado:"Pendiente"
   });
 
   guardar();
-  alert("Cita reservada correctamente");
+  alert("Solicitud de cita enviada correctamente. Estado: Pendiente de Aprobación.");
   cargarPaciente();
 }
 
@@ -240,63 +423,346 @@ function cargarPaciente(){
   cargarListaDoctores();
 
   let usuario = JSON.parse(localStorage.getItem("sesion"));
+  document.getElementById("nombreUsuarioHeader").innerText = usuario.nombre;
+  
+  // 1. Citas
   let contenedor = document.getElementById("misCitas");
   let mis = citas.filter(c => c.correoPaciente === usuario.correo);
 
   if(mis.length === 0){
     contenedor.innerHTML = "<p>No tienes citas reservadas.</p>";
-    return;
+  } else {
+    contenedor.innerHTML = "";
+    mis.forEach(c => {
+      let badgeClass = c.estado === 'Aceptada' ? 'badge-aceptada' : (c.estado === 'Rechazada' ? 'badge-rechazada' : 'badge-pendiente');
+      contenedor.innerHTML += `
+      <div class="cita">
+        <b>${c.doctor}</b> (${c.especialidad})<br>
+        Fecha: ${c.fecha} - Hora: ${c.hora}<br>
+        Motivo: ${c.motivo}<br>
+        Estado: <span class="badge ${badgeClass}">${c.estado}</span>
+      </div>`;
+    });
   }
 
-  contenedor.innerHTML = "";
+  // 2. Recetas
+  let contRecetas = document.getElementById("misRecetas");
+  let misR = recetas.filter(r => r.cedulaPaciente === usuario.cedula);
 
-  mis.forEach(c => {
-    contenedor.innerHTML += `
+  if(misR.length === 0){
+    contRecetas.innerHTML = "<p>No posee recetas activas.</p>";
+  } else {
+    contRecetas.innerHTML = "";
+    misR.forEach(r => {
+      let hoy = new Date().toISOString().split('T')[0];
+      let expirada = hoy > r.expiracion;
+      contRecetas.innerHTML += `
+      <div class="cita">
+        <b>Código Único:</b> ${r.codigo}<br>
+        <b>Medicina:</b> ${r.medicamentos}<br>
+        <b>Indicaciones:</b> ${r.indicaciones}<br>
+        <b>Expiración:</b> ${r.expiracion}<br>
+        <b>Estado:</b> ${r.entregada ? '<span class="badge badge-entregada">Entregada en Farmacia</span>' : (expirada ? '<span class="badge badge-expirada">Expirada</span>' : '<span class="badge badge-activa">Válida</span>')}
+      </div>`;
+    });
+  }
+
+  // 3. Expediente
+  let contExp = document.getElementById("miExpediente");
+  let exp = expedientes[usuario.cedula];
+  if(!exp){
+    contExp.innerHTML = "<p>Sin registros en expediente aún.</p>";
+  } else {
+    contExp.innerHTML = `
     <div class="cita">
-      <b>${c.doctor}</b><br>
-      Especialidad: ${c.especialidad}<br>
-      Fecha: ${c.fecha}<br>
-      Hora: ${c.hora}<br>
-      Motivo: ${c.motivo}<br>
-      Estado: ${c.estado}
+      <b>Diagnóstico reciente:</b> ${exp.diagnostico || 'N/A'}<br>
+      <b>Tratamiento:</b> ${exp.tratamiento || 'N/A'}<br>
+      <b>Alergias:</b> ${exp.alergias || 'Ninguna'}
     </div>`;
-  });
+  }
 }
 
 function cargarDoctor(){
+  cargarListaPacientes();
   let sesion = JSON.parse(localStorage.getItem("sesion"));
   let contenedor = document.getElementById("todasCitas");
 
   document.getElementById("tituloDoctor").innerText =
-    sesion.rol === "admin" ? "Panel del Administrador" : "Panel de " + sesion.nombre;
+    sesion.rol === "admin" ? "Panel del Administrador" : "Panel del " + sesion.nombre;
+
+  // Mostrar panel exclusivo de administración si es rol admin
+  if(sesion.rol === "admin"){
+    document.getElementById("seccionAdmin").style.display = "block";
+    cargarAdminDashboard();
+  } else {
+    document.getElementById("seccionAdmin").style.display = "none";
+  }
 
   let citasMostrar = sesion.rol === "admin"
     ? citas
     : citas.filter(c => c.correoDoctor === sesion.correo);
 
   if(citasMostrar.length === 0){
-    contenedor.innerHTML = "<p>No hay citas reservadas.</p>";
+    contenedor.innerHTML = "<p>No hay citas o solicitudes registradas.</p>";
     return;
   }
 
   contenedor.innerHTML = "";
 
   citasMostrar.forEach(c => {
+    let badgeClass = c.estado === 'Aceptada' ? 'badge-aceptada' : (c.estado === 'Rechazada' ? 'badge-rechazada' : 'badge-pendiente');
+    let acciones = '';
+
+    if(sesion.rol === "admin" || sesion.rol === "doctor"){
+      acciones = `
+        <div style="margin-top:10px; display:flex; gap:10px">
+          <button onclick="cambiarEstadoCita(${c.id}, 'Aceptada')" class="btn-success" style="padding:6px 12px">Aceptar</button>
+          <button onclick="cambiarEstadoCita(${c.id}, 'Rechazada')" class="btn-danger" style="padding:6px 12px">Rechazar</button>
+        </div>
+      `;
+    }
+
     contenedor.innerHTML += `
     <div class="cita">
-      <b>Paciente:</b> ${c.paciente}<br>
-      <b>Cédula:</b> ${c.cedula}<br>
-      <b>Edad:</b> ${c.edad}<br>
-      <b>Teléfono:</b> ${c.telefono}<br>
-      <b>Correo:</b> ${c.correoPaciente}<br>
+      <b>Paciente:</b> ${c.paciente} (Cédula: ${c.cedula})<br>
+      <b>Edad:</b> ${c.edad} | <b>Tel:</b> ${c.telefono}<br>
       <b>Doctor:</b> ${c.doctor}<br>
-      <b>Especialidad:</b> ${c.especialidad}<br>
-      <b>Fecha:</b> ${c.fecha}<br>
-      <b>Hora:</b> ${c.hora}<br>
+      <b>Fecha:</b> ${c.fecha} - ${c.hora}<br>
       <b>Motivo:</b> ${c.motivo}<br>
-      <b>Estado:</b> ${c.estado}
+      <b>Estado actual:</b> <span class="badge ${badgeClass}">${c.estado}</span>
+      ${acciones}
     </div>`;
   });
+}
+
+function cambiarEstadoCita(idCita, nuevoEstado){
+  let cita = citas.find(c => c.id === idCita);
+  if(cita){
+    cita.estado = nuevoEstado;
+    guardar();
+    alert("Solicitud de cita " + nuevoEstado + " con éxito.");
+    cargarDoctor();
+  }
+}
+
+// FUNCIONES DEL PANEL ADMINISTRADOR (CONTROL TOTAL)
+function cargarAdminDashboard(){
+  // 1. Cargar Doctores
+  let contDocs = document.getElementById("listaDoctoresAdmin");
+  let docs = medicos.filter(m => m.rol === "doctor");
+  if(docs.length === 0){
+    contDocs.innerHTML = "<p>No hay doctores registrados.</p>";
+  } else {
+    contDocs.innerHTML = "";
+    docs.forEach(d => {
+      contDocs.innerHTML += `
+        <div class="item-list" style="display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <b>${d.nombre}</b> - ${d.especialidad}<br>
+            <small>${d.correo}</small>
+          </div>
+          <button onclick="eliminarDoctor('${d.correo}')" class="btn-danger" style="width:auto; padding:6px 12px;">Quitar Doctor</button>
+        </div>
+      `;
+    });
+  }
+
+  // 2. Cargar Todos los Usuarios (Pacientes, Doctores, Staff)
+  let contUsers = document.getElementById("tablaUsuariosAdmin");
+  let todosUsuarios = [
+    ...medicos.map(m => ({nombre: m.nombre, cedula: 'STAFF/DOC', correo: m.correo, rol: m.rol})),
+    ...usuarios
+  ];
+
+  let htmlTabla = `
+    <table class="tabla-usuarios">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Cédula/ID</th>
+          <th>Correo</th>
+          <th>Rol</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+
+  todosUsuarios.forEach(u => {
+    let btnEliminar = u.rol === 'admin' ? '<small>Protegido</small>' : `<button onclick="eliminarUsuario('${u.correo}')" class="btn-danger" style="padding:4px 8px; font-size:12px; width:auto">Eliminar</button>`;
+    htmlTabla += `
+      <tr>
+        <td>${u.nombre}</td>
+        <td>${u.cedula || 'N/A'}</td>
+        <td>${u.correo}</td>
+        <td><strong>${u.rol}</strong></td>
+        <td>${btnEliminar}</td>
+      </tr>
+    `;
+  });
+
+  htmlTabla += `</tbody></table>`;
+  contUsers.innerHTML = htmlTabla;
+}
+
+function agregarDoctor(){
+  let nombre = document.getElementById("docNombre").value;
+  let especialidad = document.getElementById("docEspecialidad").value;
+  let correo = document.getElementById("docCorreo").value;
+  let clave = document.getElementById("docClave").value;
+
+  if(!nombre || !especialidad || !correo || !clave){
+    alert("Complete todos los campos del doctor.");
+    return;
+  }
+
+  if(medicos.find(m => m.correo === correo) || usuarios.find(u => u.correo === correo)){
+    alert("Ese correo ya está registrado en el sistema.");
+    return;
+  }
+
+  medicos.push({ nombre, especialidad, correo, clave, rol: "doctor" });
+  guardar();
+  alert("Doctor agregado exitosamente.");
+  
+  document.getElementById("docNombre").value = "";
+  document.getElementById("docEspecialidad").value = "";
+  document.getElementById("docCorreo").value = "";
+  document.getElementById("docClave").value = "";
+
+  cargarDoctor();
+  cargarListaDoctores();
+}
+
+function eliminarDoctor(correo){
+  if(confirm("¿Seguro que desea eliminar a este doctor del sistema?")){
+    medicos = medicos.filter(m => m.correo !== correo);
+    guardar();
+    alert("Doctor eliminado.");
+    cargarDoctor();
+    cargarListaDoctores();
+  }
+}
+
+function eliminarUsuario(correo){
+  if(confirm("¿Desea eliminar a este usuario del sistema?")){
+    medicos = medicos.filter(m => m.correo !== correo);
+    usuarios = usuarios.filter(u => u.correo !== correo);
+    guardar();
+    alert("Usuario eliminado correctamente.");
+    cargarDoctor();
+  }
+}
+
+// FUNCIONES DE RECETAS MÉDICAS
+function emitirReceta(){
+  let cedulaPaciente = document.getElementById("pacienteReceta").value;
+  let medicamentos = document.getElementById("medRecetado").value;
+  let indicaciones = document.getElementById("indicacionesReceta").value;
+  let diasValidez = parseInt(document.getElementById("diasValidez").value) || 7;
+
+  if(!cedulaPaciente || !medicamentos){
+    alert("Seleccione un paciente y especifique los medicamentos.");
+    return;
+  }
+
+  let sesion = JSON.parse(localStorage.getItem("sesion"));
+  let paciente = usuarios.find(u => u.cedula === cedulaPaciente);
+
+  // Fecha de Expiración
+  let fechaExpiracion = new Date();
+  fechaExpiracion.setDate(fechaExpiracion.getDate() + diasValidez);
+  let expStr = fechaExpiracion.toISOString().split('T')[0];
+
+  // Generar Código Único de Rastreo
+  let codigoUnico = "REC-" + Math.floor(100000 + Math.random() * 900000);
+
+  recetas.push({
+    codigo: codigoUnico,
+    cedulaPaciente: paciente.cedula,
+    nombrePaciente: paciente.nombre,
+    doctor: sesion.nombre,
+    medicamentos,
+    indicaciones,
+    expiracion: expStr,
+    entregada: false
+  });
+
+  guardar();
+  alert("Receta emitida exitosamente. Código de Rastreo: " + codigoUnico);
+  document.getElementById("medRecetado").value = "";
+  document.getElementById("indicacionesReceta").value = "";
+}
+
+// ACTUALIZAR EXPEDIENTE CLÍNICO
+function guardarExpediente(){
+  let cedula = document.getElementById("pacienteExpediente").value;
+  let diagnostico = document.getElementById("expDiagnostico").value;
+  let tratamiento = document.getElementById("expTratamiento").value;
+  let alergias = document.getElementById("expAlergias").value;
+
+  if(!cedula){
+    alert("Seleccione un paciente");
+    return;
+  }
+
+  expedientes[cedula] = { diagnostico, tratamiento, alergias };
+  guardar();
+  alert("Expediente clínico actualizado.");
+}
+
+// BÚSQUEDA Y VALIDACIÓN DE RECETAS EN FARMACIA
+function buscarRecetaFarmacia(){
+  let busqueda = document.getElementById("busquedaReceta").value.trim();
+  let cont = document.getElementById("resultadoFarmacia");
+
+  if(!busqueda){
+    alert("Ingrese un código o cédula");
+    return;
+  }
+
+  let receta = recetas.find(r => r.codigo === busqueda || r.cedulaPaciente === busqueda);
+
+  if(!receta){
+    cont.innerHTML = "<p style='color:#ef4444'>No se encontró ninguna receta con el dato proporcionado.</p>";
+    return;
+  }
+
+  let hoy = new Date().toISOString().split('T')[0];
+  let expirada = hoy > receta.expiracion;
+
+  let html = `
+    <div class="cita">
+      <h3>Receta Encontrada (${receta.codigo})</h3>
+      <b>Paciente:</b> ${receta.nombrePaciente} (${receta.cedulaPaciente})<br>
+      <b>Médico emisor:</b> ${receta.doctor}<br>
+      <b>Medicamentos autorizados:</b> ${receta.medicamentos}<br>
+      <b>Indicaciones:</b> ${receta.indicaciones}<br>
+      <b>Fecha de expiración:</b> ${receta.expiracion}<br><br>
+  `;
+
+  if(receta.entregada){
+    html += `<span class="badge badge-entregada">Esta receta ya fue despachada previamente.</span></div>`;
+  } else if(expirada){
+    html += `<span class="badge badge-expirada">Receta Expirada. No se permite entrega.</span></div>`;
+  } else {
+    html += `
+      <span class="badge badge-activa">Aprobada para entrega</span><br><br>
+      <button onclick="entregarMedicamento('${receta.codigo}')" class="btn-success">Aprobar y Entregar Medicamentos</button>
+    </div>`;
+  }
+
+  cont.innerHTML = html;
+}
+
+function entregarMedicamento(codigo){
+  let receta = recetas.find(r => r.codigo === codigo);
+  if(receta){
+    receta.entregada = true;
+    guardar();
+    alert("Medicamento entregado con éxito y receta inhabilitada para reusos.");
+    buscarRecetaFarmacia();
+  }
 }
 
 function cerrarSesion(){
@@ -313,7 +779,9 @@ window.onload = function(){
     if(sesion.rol === "doctor" || sesion.rol === "admin"){
       cargarDoctor();
       mostrar("doctor");
-    }else{
+    } else if(sesion.rol === "farmacia"){
+      mostrar("farmacia");
+    } else {
       cargarPaciente();
       mostrar("paciente");
     }
